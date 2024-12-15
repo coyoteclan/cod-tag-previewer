@@ -14,104 +14,10 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    
-    <style>
-      .custom-bg {
-        background-color: #222831;
-      }
-      .main-container {
-        background-color: #31363f;
-      }
-      .label-color {
-        color: #76abae;
-      }
-      .title {
-        color: #eeeeee;
-      }
-      .input {
-        background-color: #222831;
-        color: #eeeeee;
-      }
-      .convert-button {
-        background-color: #76abae;
-        transition: background-color 0.3s;
-      }
-      .convert-button:hover {
-        background-color: #5a8c8e;
-      }
-      .reset-button {
-        background-color: #393e46;
-        transition: background-color 0.3s;
-      }
-      .reset-button:hover {
-        background-color: #2c3036;
-      }
-      .output {
-        background-color: #60676e;
-      }
-      .history-items {
-        background-color: #60676e;
-        border-radius: 5px;
-        padding: 5px 5px 5px 5px;
-        color: #31363f;
-      }
-      .error {
-        color: #ef4444;
-      }
-      .custom-focus:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px #76abae;
-      }
-      ::selection {
-        background-color: #89939a;
-      }
-      .clear-history-button {
-        position: relative;
-        color: #ef4444;
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-      .clear-history-button::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 2px;
-        background-color: #ef4444;
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-      }
-      .clear-history-button:hover::after {
-        transform: scaleX(1);
-      }
-
-      /*CoD Colors */
-      .color-0 {
-        color: #111827;
-      }
-      .color-1 {
-        color: #ef4444;
-      }
-      .color-2 {
-        color: #34d371;
-      }
-      .color-3 {
-        color: #ffff00;
-      }
-      .color-4 {
-        color: #1e3a8a;
-      }
-      .color-5 {
-        color: #00ffff;
-      }
-      .color-6 {
-        color: #dd00ff;
-      }
-      .color-7 {
-        color: #ffffff;
-      }
-    </style>
+    <link
+      href="styles.css"
+      rel="stylesheet"
+    />
   </head>
   <body
     class="custom-bg text-gray-100 flex flex-col items-center justify-center min-h-screen"
@@ -179,7 +85,9 @@
       class="mt-4 text-center w-full"
       style="color: #eeeeee; font-weight: 500"
     >
-      <p>🤓 Made by Scylla using ChatGPT 🤓</p>
+      <h2 class="text-xl font-bold mb-4 title">Credits</h2>
+      <p>Scylla for the original version</p>
+      <p>W3Schools for the tutorials</p>
     </footer>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
