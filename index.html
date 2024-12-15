@@ -231,8 +231,8 @@
         });
 
         function copyGamerTag() {
-            var tag = gamerTagInput.value;
-            navigator.clipboard.writeText(tag);
+            var input = document.getElementById("gamerTag").value;
+            navigator.clipboard.writeText(input);
         }
         // History-related functions
         function saveToHistory(originalTag, convertedTag) {
