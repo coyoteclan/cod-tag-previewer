@@ -131,13 +131,21 @@
         />
         <p id="error" class="error text-sm hidden">Please enter a valid tag!</p>
         <div class="flex space-x-2">
-          <button
+          <!-- <button
             id="convertButton"
             type="button"
             onclick="convertGamerTag()"
             class="w-full p-2 convert-button rounded text-white font-semibold"
           >
             Convert
+          </button>-->
+          <button
+            id="convertButton"
+            type="button"
+            onclick="copyGamerTag()"
+            class="w-full p-2 convert-button rounded text-white font-semibold"
+          >
+            Copy
           </button>
           <button
             id="resetButton"
@@ -221,7 +229,11 @@
         
         loadHistory();
         });
-        
+
+        function copyGamerTag() {
+            var tag = gamerTagInput.value;
+            navigator.clipboard.writeText(tag);
+        }
         // History-related functions
         function saveToHistory(originalTag, convertedTag) {
         const history =
