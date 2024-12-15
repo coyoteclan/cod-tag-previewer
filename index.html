@@ -174,8 +174,8 @@
       <p>🤓 Made by Scylla using ChatGPT 🤓</p>
     </footer>
     <script>
-      function convertGamerTag() {
-        const input = document.getElementById("gamerTag").value;
+        document.addEventListener("DOMContentLoaded", () => {
+        const gamerTagInput = document.getElementById("gamerTag");
         const outputDiv = document.getElementById("output");
         const error = document.getElementById("error");
         const colorMap = {
@@ -188,38 +188,48 @@
           "^6": "color-6",
           "^7": "color-7",
         };
-        if (!input.trim()) {
-          error.classList.remove("hidden");
+        
+        const convertGamerTag = () => {
+          const input = gamerTagInput.value;
+        
+          if (!input.trim()) {
+            error.classList.remove("hidden");
+            outputDiv.classList.add("hidden");
+            return;
+          } else {
+            error.classList.add("hidden");
+          }
+        
+          // Convert gamer tag with color codes
+          let formattedTag = input.replace(
+            /\^(\d)/g,
+            (match, p1) => `<span class="${colorMap["^" + p1]}">`
+          );
+          formattedTag = formattedTag.replace(/(\^(\d))/g, "</span>");
+          outputDiv.innerHTML = formattedTag;
+          outputDiv.classList.remove("hidden");
+        };
+        
+        gamerTagInput.addEventListener("input", convertGamerTag);
+        
+        document.getElementById("resetButton").addEventListener("click", () => {
+          gamerTagInput.value = "";
+          outputDiv.innerHTML = "";
           outputDiv.classList.add("hidden");
-          return;
-        } else {
           error.classList.add("hidden");
-        }
-        // Convert gamer tag with color codes
-        let formattedTag = input.replace(
-          /\^(\d)/g,
-          (match, p1) => `<span class="${colorMap["^" + p1]}">`
-        );
-        formattedTag = formattedTag.replace(/(\^(\d))/g, "</span>");
-        outputDiv.innerHTML = formattedTag;
-        outputDiv.classList.remove("hidden");
-        // Save to history
-        saveToHistory(input, formattedTag);
+        });
+        
         loadHistory();
-      }
-      function resetForm() {
-        document.getElementById("gamerTag").value = "";
-        document.getElementById("output").innerHTML = "";
-        document.getElementById("output").classList.add("hidden");
-        document.getElementById("error").classList.add("hidden");
-      }
-      function saveToHistory(originalTag, convertedTag) {
+        });
+        
+        // History-related functions
+        function saveToHistory(originalTag, convertedTag) {
         const history =
           JSON.parse(localStorage.getItem("gamerTagHistory")) || [];
         history.push({ original: originalTag, converted: convertedTag });
         localStorage.setItem("gamerTagHistory", JSON.stringify(history));
-      }
-      function loadHistory() {
+        }
+        function loadHistory() {
         const historySection = document.getElementById("historySection");
         const historyDiv = document.getElementById("history");
         const history =
@@ -234,19 +244,17 @@
             const item = document.createElement("div");
             item.classList.add("mb-2", "p-2", "rounded", "history-items");
             item.innerHTML = ` 
-<p><strong>Original Tag:</strong> <span style="color: #eeeeee">${entry.original}</span></p>
-<p><strong>Converted Tag:</strong> <span style="color: #eeeeee">${entry.converted}</span></p>
-`;
+        <p><strong>Original Tag:</strong> <span style="color: #eeeeee">${entry.original}</span></p>
+        <p><strong>Converted Tag:</strong> <span style="color: #eeeeee">${entry.converted}</span></p>
+        `;
             historyDiv.appendChild(item);
           });
         }
-      }
-      function clearHistory() {
+        }
+        function clearHistory() {
         localStorage.removeItem("gamerTagHistory");
         loadHistory();
-      }
-      // Load history on page load
-      document.addEventListener("DOMContentLoaded", loadHistory);
-    </script>
+        }
+        </script>
   </body>
 </html>
